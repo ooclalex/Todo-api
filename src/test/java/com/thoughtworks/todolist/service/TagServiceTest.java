@@ -11,6 +11,8 @@ import org.mockito.Mock;
 import org.mockito.junit.jupiter.MockitoExtension;
 
 import java.util.ArrayList;
+import java.util.Collections;
+import java.util.List;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.mockito.Mockito.when;
@@ -33,5 +35,20 @@ public class TagServiceTest {
 
         //then
         assertEquals(tag, actual);
+    }
+
+    @Test
+    void should_return_all_tags_when_get_all_tags_given_tags() {
+        //given
+        Tag tag = new Tag("content 1", "red");
+        final List<Tag> expected = Collections.singletonList(tag);
+        tagService.add(tag);
+        when(tagRepository.findAll()).thenReturn(expected);
+
+        //when
+        final List<Tag> actual = tagService.getAll();
+
+        //then
+        assertEquals(expected, actual);
     }
 }
