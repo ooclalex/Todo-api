@@ -28,6 +28,7 @@ public class TodoService {
         Todo todo = this.get(id);
         todo.setText(newTodo.getText());
         todo.setDone(newTodo.isDone());
+        todo.setTags(newTodo.getTags());
         return todoRepository.save(todo);
     }
 

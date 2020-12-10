@@ -1,18 +1,22 @@
 package com.thoughtworks.todolist.dto;
 
+import java.util.List;
+
 public class TodoResponse {
     private String id;
     private String text;
     private boolean done;
+    private List<String> tags;
 
     public TodoResponse() {
 
     }
 
-    public TodoResponse(String id, String text, boolean done) {
+    public TodoResponse(String id, String text, boolean done, List<String> tags) {
         this.id = id;
         this.text = text;
         this.done = done;
+        this.tags = tags;
     }
 
     public String getId() {
@@ -37,5 +41,13 @@ public class TodoResponse {
 
     public void setDone(boolean done) {
         this.done = done;
+    }
+
+    public List<String> getTags() {
+        return tags;
+    }
+
+    public void setTags(List<String> tags) {
+        this.tags = tags;
     }
 }
