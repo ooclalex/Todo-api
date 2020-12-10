@@ -6,6 +6,7 @@ import com.thoughtworks.todolist.repository.TagRepository;
 import com.thoughtworks.todolist.repository.TodoRepository;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
+import org.mockito.ArgumentCaptor;
 import org.mockito.InjectMocks;
 import org.mockito.Mock;
 import org.mockito.junit.jupiter.MockitoExtension;
@@ -15,7 +16,7 @@ import java.util.Collections;
 import java.util.List;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
-import static org.mockito.Mockito.when;
+import static org.mockito.Mockito.*;
 
 @ExtendWith(MockitoExtension.class)
 public class TagServiceTest {
@@ -67,5 +68,20 @@ public class TagServiceTest {
 
         //then
         assertEquals(newTag, actual);
+    }
+
+    @Test
+    void should_return_null_when_delete_tag_given_tag() {
+        //given
+        Tag tag = new Tag("content 1", "red");
+        tag.setId("1");
+        tagService.add(tag);
+
+        //when
+        tagService.delete("1");
+        final ArgumentCaptor<Tag> tagArgumentCaptor = ArgumentCaptor.forClass(Tag.class);
+
+        //then
+        verify(tagRepository, times(1)).deleteById("1");
     }
 }
