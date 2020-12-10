@@ -6,6 +6,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
+import java.util.Optional;
 
 @Service
 public class TagService {
@@ -20,7 +21,10 @@ public class TagService {
         return tagRepository.findAll();
     }
 
-    public Tag update(String id, Tag newTag) {
-        return null;
+    public Tag update(String id, Tag newTag) throws Exception {
+        Tag tag = tagRepository.findById(id).orElseThrow(Exception::new);
+        tag.setColor(newTag.getColor());
+        tag.setContent(newTag.getContent());
+        return tagRepository.save(tag);
     }
 }
