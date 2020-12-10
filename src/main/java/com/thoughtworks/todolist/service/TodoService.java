@@ -20,7 +20,7 @@ public class TodoService {
         return todoRepository.findAll();
     }
 
-    public Todo get(String s) {
-        return null;
+    public Todo get(String id) throws Exception {
+        return todoRepository.findById(id).orElseThrow(Exception::new);
     }
 }

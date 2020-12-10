@@ -51,7 +51,7 @@ public class TodoServiceTest {
     }
 
     @Test
-    void should_return_specific_todo_when_get_todo_given_todo_id() {
+    void should_return_specific_todo_when_get_todo_given_todo_id() throws Exception {
         //given
         Todo todo = new Todo("task 1");
         todoService.add(todo);
