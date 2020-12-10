@@ -90,7 +90,7 @@ public class TodoServiceTest {
         todoService.add(todo);
 
         //when
-        todoService.remove("1");
+        todoService.delete("1");
         final ArgumentCaptor<Todo> todoArgumentCaptor = ArgumentCaptor.forClass(Todo.class);
 
         //then
