@@ -4,6 +4,7 @@ import com.thoughtworks.todolist.model.Todo;
 import com.thoughtworks.todolist.repository.TodoRepository;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
+import org.mockito.ArgumentCaptor;
 import org.mockito.InjectMocks;
 import org.mockito.Mock;
 import org.mockito.junit.jupiter.MockitoExtension;
@@ -12,7 +13,7 @@ import java.util.Collections;
 import java.util.List;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
-import static org.mockito.Mockito.when;
+import static org.mockito.Mockito.*;
 
 @ExtendWith(MockitoExtension.class)
 public class TodoServiceTest {
@@ -79,5 +80,20 @@ public class TodoServiceTest {
 
         //then
         assertEquals(newTodo, actual);
+    }
+
+    @Test
+    void should_return_null_when_delete_todo_given_todo() {
+        //given
+        Todo todo = new Todo("task 1", false);
+        todo.setId("1");
+        todoService.add(todo);
+
+        //when
+        todoService.remove("1");
+        final ArgumentCaptor<Todo> todoArgumentCaptor = ArgumentCaptor.forClass(Todo.class);
+
+        //then
+        verify(todoRepository, times(1)).deleteById("1");
     }
 }
