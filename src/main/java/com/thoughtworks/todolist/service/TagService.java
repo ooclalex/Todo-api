@@ -17,6 +17,6 @@ public class TagService {
     }
 
     public List<Tag> getAll() {
-        return null;
+        return tagRepository.findAll();
     }
 }
