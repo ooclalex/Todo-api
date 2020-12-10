@@ -11,6 +11,6 @@ public class TagService {
     TagRepository tagRepository;
 
     public Tag add(Tag tag) {
-        return null;
+        return tagRepository.save(tag);
     }
 }
