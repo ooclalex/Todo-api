@@ -51,4 +51,21 @@ public class TagServiceTest {
         //then
         assertEquals(expected, actual);
     }
+
+    @Test
+    void should_return_updated_tag_when_update_tag_given_tag_new_tag() throws Exception {
+        //given
+        Tag oldTag = new Tag("content 1", "red");
+        oldTag.setId("1");
+
+        Tag newTag = new Tag("content 2", "red");
+        when(tagRepository.findById("1")).thenReturn(java.util.Optional.of(newTag));
+        when(tagRepository.save(newTag)).thenReturn(newTag);
+
+        //when
+        final Tag actual = tagService.update(oldTag.getId(), newTag);
+
+        //then
+        assertEquals(newTag, actual);
+    }
 }

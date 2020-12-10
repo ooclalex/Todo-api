@@ -19,4 +19,8 @@ public class TagService {
     public List<Tag> getAll() {
         return tagRepository.findAll();
     }
+
+    public Tag update(String id, Tag newTag) {
+        return null;
+    }
 }
