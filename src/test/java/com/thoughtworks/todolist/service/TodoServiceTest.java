@@ -49,4 +49,18 @@ public class TodoServiceTest {
         //then
         assertEquals(expected, actual);
     }
+
+    @Test
+    void should_return_specific_todo_when_get_todo_given_todo_id() {
+        //given
+        Todo todo = new Todo("task 1");
+        todoService.add(todo);
+        when(todoRepository.findById("1")).thenReturn(java.util.Optional.of(todo));
+
+        //when
+        final Todo actual = todoService.get("1");
+
+        //then
+        assertEquals(todo, actual);
+    }
 }
