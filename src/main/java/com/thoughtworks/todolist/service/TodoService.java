@@ -24,7 +24,10 @@ public class TodoService {
         return todoRepository.findById(id).orElseThrow(Exception::new);
     }
 
-    public Todo update(String id, Todo newTodo) {
-        return null;
+    public Todo update(String id, Todo newTodo) throws Exception {
+        Todo todo = this.get(id);
+        todo.setText(newTodo.getText());
+        todo.setDone(newTodo.isDone());
+        return todoRepository.save(todo);
     }
 }

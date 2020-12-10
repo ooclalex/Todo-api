@@ -65,7 +65,7 @@ public class TodoServiceTest {
     }
 
     @Test
-    void should_return_updated_todo_when_update_todo_given_todo_new_todo() {
+    void should_return_updated_todo_when_update_todo_given_todo_new_todo() throws Exception {
         //given
         Todo oldTodo = new Todo("task 1", false);
         oldTodo.setId("1");
