@@ -23,6 +23,19 @@ public class TodoServiceTest {
     private TodoRepository todoRepository;
 
     @Test
+    void should_return_todo_when_add_todo_given_no_todos() {
+        //given
+        Todo todo = new Todo("task 1");
+        when(todoRepository.save(todo)).thenReturn(todo);
+
+        //when
+        final Todo actual = todoService.add(todo);
+
+        //then
+        assertEquals(todo, actual);
+    }
+
+    @Test
     void should_return_all_todos_when_get_all_todos_given_todos() {
         //given
         Todo todo = new Todo("task 1");

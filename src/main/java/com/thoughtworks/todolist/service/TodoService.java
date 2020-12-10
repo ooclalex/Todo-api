@@ -8,7 +8,8 @@ import java.util.List;
 @Service
 public class TodoService {
 
-    public void add(Todo todo) {
+    public Todo add(Todo todo) {
+        return null;
     }
 
     public List<Todo> getAll() {
